@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atom Rose · 原子玫瑰 — For Sale</title>
+  <meta name="description" content="原子玫瑰 atomrose.com — 兼具科技与时尚的域名，现出售。Atom Rose: a domain blending technology and fashion, now for sale." />
+  <style>
+    :root {
+      --bg: #f6fbff;
+      --blue: #2f7bf6;
+      --blue-soft: #58b2ff;
+      --green: #12b76a;
+      --pink: #ff6b9d;
+      --pink-soft: #ff9ec0;
+      --text: #1f2b3a;
+      --muted: #6b7a90;
+      --card: #ffffff;
+      --border: rgba(47, 123, 246, 0.14);
+      --shadow: 0 12px 34px rgba(47, 123, 246, 0.10), 0 3px 10px rgba(18, 183, 106, 0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background:
+        radial-gradient(55rem 55rem at 12% -12%, rgba(47, 123, 246, 0.14), transparent 60%),
+        radial-gradient(48rem 48rem at 88% 8%, rgba(255, 107, 157, 0.13), transparent 55%),
+        radial-gradient(52rem 52rem at 50% 118%, rgba(18, 183, 106, 0.12), transparent 58%),
+        var(--bg);
+      color: var(--text);
+      font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.25rem 4rem;
+    }
+
+    .wrap { width: 100%; max-width: 780px; }
+
+    header { text-align: center; padding-bottom: 2.4rem; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      margin-bottom: 1.4rem;
+      background: var(--card);
+      box-shadow: 0 6px 18px rgba(47, 123, 246, 0.08);
+    }
+    .badge .en { text-transform: none; letter-spacing: 0.02em; font-weight: 600; }
+    .badge .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--blue-soft));
+      box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: .55; transform: scale(.85);} 50% { opacity: 1; transform: scale(1);} }
+
+    .logo {
+      font-size: clamp(2.4rem, 9vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--blue);
+    }
+    .logo .rose {
+      background: linear-gradient(120deg, var(--pink), var(--green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.6vw, 1.15rem);
+      letter-spacing: 0.04em;
+    }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      margin: 2.4rem 0;
+      background: linear-gradient(90deg, transparent, rgba(47, 123, 246, 0.22), transparent);
+    }
+
+    .lang { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+    @media (min-width: 640px) { .lang { grid-template-columns: 1fr 1fr; gap: 1.6rem; } }
+
+    .lang-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.1rem;
+      padding: 1.6rem 1.5rem;
+      box-shadow: var(--shadow);
+      border-top: 4px solid transparent;
+      border-image: linear-gradient(90deg, var(--blue), var(--pink), var(--green)) 1;
+    }
+    .lang-card h2 {
+      font-size: 0.78rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .lang-card h2 .flag { font-size: 1rem; }
+    .lang-card p { line-height: 1.85; color: var(--text); font-size: 1.02rem; }
+    .lang-card strong { color: var(--pink); }
+
+    .price {
+      margin-top: 2.2rem;
+      text-align: center;
+      padding: 1.8rem 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 1.1rem;
+      background: linear-gradient(160deg, rgba(88, 178, 255, 0.12), rgba(255, 255, 255, 0.6) 45%, rgba(18, 183, 106, 0.10));
+      box-shadow: var(--shadow);
+    }
+    .price .label {
+      font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.7rem;
+    }
+    .price .amount {
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -0.02em;
+    }
+    .price .amount .cny { font-size: 0.5em; color: var(--pink); font-weight: 700; }
+    .price .note { margin-top: 0.9rem; color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+    .price .note strong { color: var(--green); }
+
+    .contact {
+      margin-top: 2.2rem;
+      text-align: center;
+    }
+    .contact .cta {
+      display: inline-block;
+      text-decoration: none;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      padding: 1rem 2.4rem;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 24px rgba(47, 123, 246, 0.28);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .contact .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(47, 123, 246, 0.34); }
+    .contact .email { margin-top: 1rem; color: var(--muted); font-size: 0.92rem; }
+    .contact .email a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+    footer { margin-top: 3rem; font-size: 0.78rem; color: var(--muted); text-align: center; letter-spacing: 0.06em; }
+    footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge"><span class="dot"></span><span>原子玫瑰——售卖中</span> <span class="en">(atom rose - for sale)</span></div>
+      <h1 class="logo">atom<span class="rose">rose</span>.com</h1>
+    </header>
+
+    <div class="divider"></div>
+
+    <div class="lang">
+      <section class="lang-card">
+        <h2><span class="flag">🇨🇳</span> 中文</h2>
+        <p>
+          原子玫瑰，兼具科技与时尚。本打算自己用，现因周转资金出售。
+          域名人民币 30000 元（≈ 美元 $5,000）。更期待收到您的直接投资。
+          请联系：<strong>toqiuye@foxmail.com</strong>
+        </p>
+      </section>
+
+      <section class="lang-card">
+        <h2><span class="flag">🇬🇧</span> English</h2>
+        <p>
+          <strong>Atom Rose</strong> — combining technology and fashion.
+          I originally planned to keep it for myself, but I'm now selling it to free up some capital.
+          Asking: <strong>RMB 30,000</strong> (CNY 30,000 · ≈ USD $5,000).
+          Your direct investment would be warmly welcomed.
+          Contact: <strong>toqiuye@foxmail.com</strong>
+        </p>
+      </section>
+    </div>
+
+
+    <footer>
+      Atom Rose · 原子玫瑰 — <a href="https://atomrose.com">atomrose.com</a>
+    </footer>
+  </div>
+</body>
+</html>
