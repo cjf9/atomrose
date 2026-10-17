@@ -1,0 +1,254 @@
+/* Atomrose —— 极简文字为主，黑白灰 */
+
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #6b6b6b;
+  --line: #e4e4e4;
+  --soft: #f6f6f6;
+  --max: 46rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101010;
+    --fg: #e9e9e9;
+    --muted: #8c8c8c;
+    --line: #2a2a2a;
+    --soft: #1a1a1a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0 1.25rem;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.8 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--max); margin: 0 auto; }
+
+/* ── 页头 ─────────────────────────────── */
+
+.site-head {
+  border-bottom: 1px solid var(--line);
+  padding: 1.5rem 0 1.7rem;
+  margin-bottom: 2.75rem;
+}
+
+.site-head .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+/* 站名两行：QY的博客 与右边导航底部对齐，AtomRose.com 挂在它下面一行。
+   跟导航同一套字形（不加粗、同色），只有字号更大。 */
+.brand {
+  position: relative;
+  display: inline-block;
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.25;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.brand:hover { color: var(--fg); }
+
+.brand-site {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 1px);
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.site-head nav a {
+  margin-left: 1.1rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.94rem;
+}
+
+.site-head nav a:first-child { margin-left: 0; }
+.site-head nav a:hover { color: var(--fg); }
+.site-head nav a.on { color: var(--fg); }
+
+/* ── 正文 ─────────────────────────────── */
+
+h1 { font-size: 1.55rem; line-height: 1.35; margin: 0 0 1rem; font-weight: 600; }
+h2 { font-size: 1.05rem; margin: 2.75rem 0 0.75rem; font-weight: 600; }
+h3 { font-size: 1rem; margin: 2rem 0 0.5rem; font-weight: 600; }
+
+p { margin: 0 0 1.15rem; }
+
+a { color: var(--fg); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2.75rem 0; }
+
+.muted { color: var(--muted); }
+.intro { font-size: 1.06rem; }
+.hero { margin-bottom: 3rem; }
+
+/* ── 文章列表 ─────────────────────────── */
+
+.posts { list-style: none; margin: 0; padding: 0; }
+
+.posts li {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.posts a { text-decoration: none; }
+.posts a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.tag-new {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b91c1c;
+  background: #fee2e2;
+  border-radius: 3px;
+  padding: 0.1rem 0.36rem;
+  margin-left: 0.55rem;
+  vertical-align: 0.14em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tag-new { color: #fca5a5; background: #3f1d1d; }
+}
+
+/* ── 搜索 ─────────────────────────────── */
+
+/* ── 作品块（work.html 用） ────────────── */
+
+.project {
+  border-top: 1px solid var(--line);
+  padding: 1.9rem 0 0.6rem;
+  margin: 0 0 1.9rem;
+}
+
+.project:last-child { margin-bottom: 0; }
+.project h2 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.project .meta { color: var(--muted); font-size: 0.86rem; margin: 0 0 0.9rem; }
+.project ul { padding-left: 1.4rem; margin: 0 0 1.15rem; }
+.project li { margin: 0.25rem 0; }
+.project img { max-width: 100%; height: auto; display: block; margin: 1.25rem 0; }
+.project p:last-child { margin-bottom: 0.4rem; }
+
+/* ── 搜索 ─────────────────────────────── */
+
+.search { display: none; margin: 0 0 3rem; }
+.search.on { display: block; }
+
+.search input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.search input::placeholder { color: var(--muted); }
+.search input:focus { border-color: var(--muted); }
+
+.search-results {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.search-results:empty { display: none; }
+.search-results li { border-bottom: 1px solid var(--line); }
+.search-results li:last-child { border-bottom: 0; }
+
+.search-results a {
+  display: block;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.search-results a:hover { background: var(--soft); }
+.search-results .sec { color: var(--muted); font-size: 0.8rem; margin-left: 0.6rem; }
+.search-results .none { padding: 0.6rem 0.85rem; color: var(--muted); font-size: 0.9rem; }
+
+/* ── 文章内页 ─────────────────────────── */
+
+article { margin-bottom: 4rem; }
+
+article img { max-width: 100%; height: auto; display: block; margin: 1.75rem auto; }
+
+article pre {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+article code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+article :not(pre) > code {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.05em 0.3em;
+}
+
+article blockquote {
+  margin: 1.75rem 0;
+  padding: 0 1.1rem;
+  border-left: 2px solid var(--line);
+  color: var(--muted);
+}
+
+article blockquote p:last-child { margin-bottom: 0; }
+
+article table { border-collapse: collapse; width: 100%; font-size: 0.92rem; margin: 1.5rem 0; }
+article th, article td { border: 1px solid var(--line); padding: 0.45rem 0.7rem; text-align: left; }
+article th { font-weight: 600; background: var(--soft); }
+
+article ul, article ol { padding-left: 1.4rem; }
+article li { margin: 0.3rem 0; }
+
+/* ── 页脚 ─────────────────────────────── */
+
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 4rem;
+  padding: 1.5rem 0 3.5rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+footer p { margin: 0; }
+footer a { color: var(--muted); }

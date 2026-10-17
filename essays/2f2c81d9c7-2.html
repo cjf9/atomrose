@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于这个站点</title>
+<meta name="description" content="这是第一篇文章，纯占位，用来验证 build.py 和 update.py 跑不跑得通。你随时可以删掉它。 写作流程 在 markdown_source/ 里写一个 .md跑 python build.py把生成的 html 手动归类到 w">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="brand-name">QY的博客</span><small class="brand-site">AtomRose.com</small></a>
+    <nav>
+      <a href="/work.html">工作</a>
+      <a href="/essays/">随笔</a>
+      <a href="/fiction/">小说与诗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+<h1>关于这个站点</h1>
+<p>这是第一篇文章，纯占位，用来验证 build.py 和 update.py 跑不跑得通。你随时可以删掉它。</p>
+<h2>写作流程</h2>
+<ol><li>在 <code>markdown_source/</code> 里写一个 <code>.md</code></li><li>跑 <code>python build.py</code></li><li>把生成的 html 手动归类到 <code>work/</code>、<code>essays/</code> 或 <code>fiction/</code></li><li>跑 <code>python update.py</code> 刷新四个索引页</li></ol>
+<blockquote><p>索引页本身是静态 HTML，所以搜索引擎和分享预览都能正常抓到内容，不依赖浏览器跑脚本。</p></blockquote>
+<h2>能用的语法</h2>
+<p><strong>加粗</strong>、<em>斜体</em>、<del>删除线</del>、<code>行内代码</code>，还有<a href="https://github.com">一个链接</a>。</p>
+<pre><code class="language-python">print("代码块")</code></pre>
+<table><thead><tr><th>脚本</th><th>干什么</th></tr></thead><tbody><tr><td>build.py</td><td>markdown 转 html</td></tr><tr><td>update.py</td><td>刷新四个索引页</td></tr></tbody></table>
+<p>删除文章就是删掉那个 html，再跑一次 update.py。</p>
+</article>
+</main>
+
+<footer class="wrap">
+  <p>© QY</p>
+</footer>
+
+</body>
+</html>
