@@ -187,10 +187,11 @@ body.prose article h6 {
   text-align: center;
 }
 
-/* ── 纸张效果（只给文学页的正文） ─────── */
+/* ── 纸张效果（所有文章页，不分栏目） ─── */
 /* 页面底色不另设，跟全站一致，免得从索引页点进来时背景突变；
    只有正文区铺一层极浅的纸白，靠那点色差和几乎看不见的投影分出来。 */
-body.prose article {
+body.prose article,
+body.doc article {
   background: #fcfbf9;
   padding: 3rem 3.4rem;
   border-radius: 2px;
@@ -198,7 +199,8 @@ body.prose article {
 }
 
 @media (prefers-color-scheme: dark) {
-  body.prose article {
+  body.prose article,
+  body.doc article {
     background: #131211;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 28px rgba(0, 0, 0, 0.25);
   }
@@ -206,7 +208,8 @@ body.prose article {
 
 /* 手机上纸面铺满整宽，否则一行只剩二十来个字 */
 @media (max-width: 640px) {
-  body.prose article {
+  body.prose article,
+  body.doc article {
     margin-left: -1.25rem;
     margin-right: -1.25rem;
     padding: 1.6rem 1.25rem;
