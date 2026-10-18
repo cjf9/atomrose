@@ -5,3 +5,4 @@ _backup/
 tools/drafts/
 debug.log
 tools/archive/
+.ssh/
