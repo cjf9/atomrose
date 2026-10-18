@@ -5,37 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>随笔 · Atomrose</title>
 <meta name="description" content="Atomrose 的随笔。">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=24">
+  <link rel="icon" type="image/png" href="/assets/songshu.png">
 </head>
 <body>
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="/"><span class="brand-name">QY的博客</span><small class="brand-site">AtomRose.com</small></a>
+    <a class="brand" href="/"><span class="brand-name">QY博客</span><small class="brand-site">AtomRose.com</small></a>
     <nav>
-      <a href="/work.html">工作</a>
+      <a href="/work/">工作</a>
       <a href="/essays/" class="on">随笔</a>
-      <a href="/fiction/">小说与诗</a>
+      <a href="/collection/">自选集</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
 
-  <h1>随笔</h1>
-  <p class="muted">这里放栏目说明（占位）。写在标记圈外面，脚本不会碰。</p>
+  <h1 class="sr-only">随笔</h1>
+  <div class="lede-gap" aria-hidden="true"></div>
 
+  <!-- 标记圈之间由 tools/update_essay_index.py 生成，别手改；圈外随便改。 -->
   <ul class="posts">
       <!-- atomrose:list:start -->
-      <li><a href="/essays/2f2c81d9c7-2.html">关于这个站点</a></li>
+      <li><a href="/essays/2f2c8205e8.html">当你再次看到此文，反思下你是否改掉了乱写的毛病<span class="item-date">2026-10-18</span></a></li>
       <!-- atomrose:list:end -->
   </ul>
 
 </main>
 
 <footer class="wrap">
-  <p>© QY · <a href="mailto:you@example.com">you@example.com</a></p>
+  <p>© QY</p>
 </footer>
 
+<script src="/assets/new-tag.js"></script>
 </body>
 </html>

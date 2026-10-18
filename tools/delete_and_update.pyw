@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-delete.pyw —— 删文章，删得放心。
+delete_and_update.pyw —— 删文章，删得放心。
 
 【功能】
-列出 essays/ 和 fiction/ 里的全部文章，你挑一篇，它给你看标题和摘要，
+列出 essays/ collection/ work/ 里的全部文章，你挑一篇，它给你看标题和摘要，
 可以在浏览器里打开确认，确认后连页面带资源目录一起删掉。
 
 【注意：这是真删，不进回收站，删了就没了。】
@@ -13,13 +13,13 @@ delete.pyw —— 删文章，删得放心。
 
 双击运行会开一个窗口：上面列文章，下面显示这一篇的摘要，底下几个按钮。
 
-它只删文章，不碰四个索引页。删完自己跑一次 update.pyw。
+删完会自动刷新四个索引页（随笔 → 自选集 → 工作 → 首页）。
 
 【命令行】
-    python delete.pyw            开窗口（双击就是这条）
-    python delete.pyw --cli      不开窗口，在终端里问答
-    python delete.pyw --no-open  配合 --cli：不自动开浏览器，只打出地址
-    python delete.pyw --help     看这份说明
+    python delete_and_update.pyw            开窗口（双击就是这条）
+    python delete_and_update.pyw --cli      不开窗口，在终端里问答
+    python delete_and_update.pyw --no-open  配合 --cli：不自动开浏览器，只打出地址
+    python delete_and_update.pyw --help     看这份说明
 
 【预览】
 "在浏览器里看"走 http://127.0.0.1:8080/（你自己起的预览服务）。
@@ -35,12 +35,13 @@ from datetime import datetime
 from html import unescape
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent    # 站点根目录（tools/ 的上一层）
 
-# work 不在列表里 —— 工作那一页是手写的 work.html，不是文章，删不了也不用删。
+# 三个栏目都要能删。work 的文章也是文章，资源同样在 assets/<文章文件名>/ 下。
 SECTIONS = [
     ("essays", "随笔"),
-    ("fiction", "小说与诗"),
+    ("collection", "自选集"),
+    ("work", "工作"),
 ]
 
 ASSETS = ROOT / "assets"
@@ -83,7 +84,7 @@ def show_help(text):
     if HAS_CONSOLE:
         print(text)
     else:
-        _dialog("showinfo", "delete.pyw 用法", text)
+        _dialog("showinfo", "delete_and_update.pyw 用法", text)
 
 
 # ── 认文件名里的时间 ────────────────────────────────────────────────
@@ -241,6 +242,24 @@ def do_delete(item):
     return lines
 
 
+def refresh_indexes():
+    """删完按 随笔 → 自选集 → 工作 → 首页 的顺序刷新索引，返回说明行。"""
+    out = []
+    tools_root = str(Path(__file__).resolve().parent)
+    if tools_root not in sys.path:
+        sys.path.insert(0, tools_root)
+    for modname in ("update_essay_index", "update_collection_index",
+                    "update_work_index", "update_home_index"):
+        try:
+            mod = __import__(modname)
+            res = mod.run()
+            if isinstance(res, (list, tuple)):
+                out.extend(str(x) for x in res)
+        except Exception as e:
+            out.append("× %s 失败：%s" % (modname, e))
+    return out
+
+
 # ── 图形界面（双击走这条） ──────────────────────────────────────────
 
 class App:
@@ -339,16 +358,15 @@ class App:
         if not messagebox.askyesno("确认删除", "\n".join(lines),
                                    parent=self.root, default="no", icon="warning"):
             return
-        result = do_delete(it)
+        do_delete(it)
+        refresh_indexes()
         self.reload()
-        messagebox.showinfo("删好了", "\n".join(result) + "\n\n别忘了跑一次 update.pyw 刷新索引。",
-                            parent=self.root)
 
 
 def run_gui():
     if not HAVE_TK:
         print("这台机器的 Python 没带 tkinter，开不了窗口。")
-        print("改用命令行模式：python delete.pyw --cli")
+        print("改用命令行模式：python delete_and_update.pyw --cli")
         return
     root = tk.Tk()
     root.title("删除文章 - Atomrose")
@@ -358,7 +376,7 @@ def run_gui():
     root.mainloop()
 
 
-# ── 命令行问答（python delete.pyw --cli） ───────────────────────────
+# ── 命令行问答（python delete_and_update.pyw --cli） ───────────────────────────
 
 def run_cli(no_open=False):
     if not HAS_CONSOLE:
@@ -417,7 +435,9 @@ def run_cli(no_open=False):
         if ans in ("y", "yes"):
             for line in do_delete(it):
                 print("  %s" % line)
-            print("\n  别忘了跑一次：python update.pyw")
+            print()
+            for line in refresh_indexes():
+                print("  %s" % line)
         else:
             print("  取消，什么都没删。")
 

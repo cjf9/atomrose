@@ -23,6 +23,47 @@
 
   box.classList.add('on');
 
+  // 占位文字后面那几个点来回跳：1 → 6 循环，输入框聚焦或已经有内容时停下
+  var DOTS = '·';
+  var dotCount = 1;
+  var dotTimer = null;
+
+  function setDots(n) {
+    input.setAttribute('placeholder', '搜索文章' + new Array(n + 1).join(DOTS));
+  }
+
+  function startDots() {
+    if (dotTimer) return;
+    dotTimer = setInterval(function () {
+      dotCount = dotCount % 6 + 1;
+      setDots(dotCount);
+    }, 420);
+  }
+
+  function stopDots() {
+    if (dotTimer) {
+      clearInterval(dotTimer);
+      dotTimer = null;
+    }
+  }
+
+  input.addEventListener('focus', function () {
+    stopDots();
+    // 点进去就把文字清掉，只留放大镜
+    input.setAttribute('placeholder', '');
+  });
+
+  input.addEventListener('blur', function () {
+    if (!input.value) {
+      dotCount = 1;
+      setDots(dotCount);
+      startDots();
+    }
+  });
+
+  setDots(dotCount);
+  startDots();
+
   var MAX_HITS = 20;
   var lower = items.map(function (it) {
     return String(it.t || '').toLowerCase();

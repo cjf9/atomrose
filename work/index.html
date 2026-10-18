@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>工作 · QY博客</title>
+<meta name="description" content="QY 做过的项目与产品，卡片式展示，点进去看详情。">
+<link rel="stylesheet" href="/assets/style.css?v=24">
+  <link rel="icon" type="image/png" href="/assets/songshu.png">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="brand-name">QY博客</span><small class="brand-site">AtomRose.com</small></a>
+    <nav>
+      <a href="/work/" class="on">工作</a>
+      <a href="/essays/">随笔</a>
+      <a href="/collection/">自选集</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1 class="sr-only">工作</h1>
+
+  <div class="lede-gap" aria-hidden="true"></div>
+
+  <!--
+    注意：下面这个列表不是手写的，是 tools/update_work_index.py 生成的。
+
+    标记圈之间的 <li class="card"> 会被脚本整段重写。别在圈里改，改了下一次
+    跑 update_all_index.pyw 就没了。
+
+    想改卡片，按目的去改对应的地方：
+      · 结构（有没有图、摘要多长、元素顺序）→ tools/update_work_index.py 的 render()
+      · 外观（宽度、圆角、间距、hover）      → assets/style.css 里 .card 那组规则
+      · 某张卡片的图或摘要                    → 改那篇文章自己的配图和 <meta name="description">
+
+    <ul> 上的两个 class 不能删也不能改名：
+      .posts  → assets/new-tag.js 靠它找列表（删了 new 标签就没了）
+      .cards  → assets/style.css 靠它切卡片布局（删了就变回一行行标题）
+    改了不会报错，只会静默失效，这种最难查。
+
+    圈外的内容（上面的说明文字、页脚、导航、head）随便改，脚本一个字都不碰。
+  -->
+  <ul class="posts cards">
+      <!-- atomrose:list:start -->
+      <!-- atomrose:list:end -->
+  </ul>
+
+</main>
+
+<footer class="wrap">
+  <p>© QY</p>
+</footer>
+
+<script src="/assets/new-tag.js"></script>
+</body>
+</html>
